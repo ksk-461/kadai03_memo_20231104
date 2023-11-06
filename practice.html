@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 全般的に後で消す -->
+    <input type="text" class="key" required>
+    <input type="text" class="value" required>
+    <input type="submit" class="submit" value="登録">
+    <button class="clear">クリア</button>
+    <ur class="list">
+
+    </ur>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.submit').on('click', function(){
+                const key = $('.key').val()
+                const value = $('.value').val()
+                
+                localStorage.setItem(key, value);
+                console.log(key, value)
+            });
+
+            $('.clear').on('click',function(){
+                localStorage.clear();
+            });
+
+        });
+    </script>
+</body>
+</html>
