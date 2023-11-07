@@ -101,3 +101,18 @@ main {
     height: 25%;
     background-color: #835632;
 }
+
+/* 色確認用後で消す */
+.yel {
+    width: 100px;
+    height: 50px;
+    /* background-color: #ff0; */
+    background: linear-gradient(transparent 50%, #ff0 70%);
+}
+
+.pink {
+    width: 100px;
+    height: 50px;
+    /* background-color: #ffb1b3; */
+    background: linear-gradient(transparent 50%, #ffb1b3 70%);
+}
