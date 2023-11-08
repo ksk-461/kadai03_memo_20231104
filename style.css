@@ -6,7 +6,8 @@
 
 body {
     height: 100vh;
-    width: 100%; 
+    width: 100%;
+    overflow: hidden;
 }
 
 .blackboard {
