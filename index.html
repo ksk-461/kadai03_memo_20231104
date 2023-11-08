@@ -14,7 +14,7 @@
                 <div class="qs">
                     <h1>3年＜br＞<br><span></span>組ジーパチ先生</h1>
                     <label for="word">単語</label><input type="text" id="word"><br>
-                    <label for="exp">説明</label><input type="text" id="exp">
+                    <label for="exp">説明</label><textarea name="" id="exp"></textarea>
                 </div>
                 <div class="sub">
                     <h2>いい</h2> <!-- 表示確認用のため後で削除 -->
@@ -34,7 +34,21 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        
+        //変数宣言
+        let word = 0;
+        let exp = 0;
+        let ans = 0;
+        let str_cnt = 0;
+        let cor_cnt = 0;
+
+        $(() => {
+            
+
+            $(".cleaner").on("click",() => {
+                // 確認のモーダルいる？？
+                localStorage.clear();
+            })
+        });
     </script>
 </body>
 </html>

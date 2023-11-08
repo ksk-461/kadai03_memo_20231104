@@ -81,7 +81,7 @@ main {
     right: 10%;
     width: 100px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 3px 3px 10px 10px;
     background-color: #253565;
 }
 
@@ -101,6 +101,10 @@ main {
     width: 25%;
     height: 25%;
     background-color: #835632;
+}
+
+.cleaner:hover {
+    border: 3px solid #fff;
 }
 
 /* 色確認用後で消す */
