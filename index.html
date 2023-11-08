@@ -8,25 +8,42 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- <audio autoplay src="./audio/Japanese_School_Bell02-01(Slow-Long).mp3"></audio> -->
+    <!-- うるさいから最後に解除 -->
     <div class="blackboard">
         <main>
             <div class="left">
                 <div class="qs">
                     <h1>3年＜br＞<br><span></span>組ジーパチ先生</h1>
-                    <label for="word">単語</label><input type="text" id="word"><br>
-                    <label for="exp">説明</label><textarea name="" id="exp"></textarea><br>
-                    <button type="button" class="submit">登録</button> <!-- ダサいからaタグで加工する？ -->
+                    <!-- ここに説明文を入れる -->
+                    <h2>◇今日は自習です◇</h2>
+                    
+                    <!-- <div class="pink"></div>  表示確認用のため後で削除 -->
+                    <!-- <div class="yel"></div>  表示確認用のため後で削除 -->
+                    <label for="word">単語</label><br>
+                    <input type="text" id="word"><br>
+                    <label for="exp">説明</label><br>
+                    <textarea name="" id="exp"></textarea><br>
+                    <button type="button" class="sub ts">登録</button>
                 </div>
-                <div class="sub">
-                    <h2>いい</h2> <!-- 表示確認用のため後で削除 -->
-                    <div class="pink"></div> <!-- 表示確認用のため後で削除 -->
-                    <div class="yel"></div> <!-- 表示確認用のため後で削除 -->
+                <div class="howto">
+                    <h2>使い方</h2>
+                    <p>単語に覚えたい言葉を入れましょう</p>
+                    <p>伏せ字にしたい箇所を /（スラッシュ）で囲ってね</p>
+                    <p>（例）単語：りんご</p>
+                    <p><span></span>説明：色が<span class="pink_str">/赤い/</span>果物です</p>
+                    <p>右側に問題文となって現れるよ</p>
                 </div>
             </div>
             <div class="list">
-                <h2>うう</h2> <!-- 表示確認用のため後で削除 -->
+                <h2>\テストに出るぞー/</h2>
+                <p>問題：◯の部分を答えなさい</p>
+                <ul class="list_test">
+                    
+                </ul>
             </div>
             <span class="cleaner"></span>
+            <span class="clean_up">全部消しちゃう？</span>
         </main>
     </div>
     <div class="chalk_box">
@@ -38,17 +55,91 @@
         //変数宣言
         let word = 0;
         let exp = 0;
+        let exp_spl = 0;
+        let exp_len = 0;
+        let qs = 0;
         let ans = 0;
         let str_cnt = 0;
         let cor_cnt = 0;
+        let cor_sen = 0;
+        let arr = 0;
 
         $(() => {
             
+            $(".sub"+".ts").on("click",() => {
+                // 文字の取得
+                word = $("#word").val();
+                exp = $("#exp").val();
+                exp = exp.replace(/／/g,"/");
+                exp_spl = exp.split("/");
+                exp_len = exp_spl.length;
 
+                // 配列に応じての条件分岐
+                if(exp_len == 1){
+                    ans = exp;
+                    str_cnt = ans.length;
+                    qs = "◯".repeat(str_cnt);
+                    cor_sen = ans;
+                    console.log(ans,qs)
+                }else if(exp_len == 2){
+                    // textareaを赤くする？
+                    alert("/で伏せ字にしたい文字を囲ってね")
+                }else if(exp_len == 3){
+                    ans = exp_spl[1]; // 0を起点とするため、その中間
+                    str_cnt = ans.length;
+                    qs = exp_spl[0] + "◯".repeat(str_cnt) + exp_spl[2];
+                    cor_sen = exp.replace(/\//g,"");
+                }else{
+                    // textareaを赤くする？
+                    alert("/が多すぎるよ。")
+                };
+
+                // オブジェクトをJSONで保持
+                arr = {question: qs, answer: ans, correct: cor_sen, count: cor_cnt};
+                arr = JSON.stringify(arr);
+                localStorage.setItem(word, arr);
+                const html=`
+                <li>
+                   <p>単語：${word}</p>
+                   <p>${qs}</p>
+                    <input type="text" id="ans_inp">
+                    <button type="button" class="sub ans">回答</button>
+                </li>
+                `;
+                $(".list_test").append(html);
+
+                // 入力項目をリセット
+                $("#word").val("");
+                $("#exp").val("");
+            })
+
+
+            // 全部消す
             $(".cleaner").on("click",() => {
                 // 確認のモーダルいる？？
                 localStorage.clear();
             })
+
+            // 黒板消しホバー
+            $(".cleaner").hover(() => {
+                $(".clean_up").css("display", "block")
+            },
+                function(){
+                    $(".clean_up").css("display", "none")
+                });
+
+            $(".cleaner").on("click",() => {
+                $(".list_test").empty();
+            });
+
+            // for(let i =0; i < k; i++){
+            //     const html =
+            //     `<li>
+
+            //     </li>
+            // `;
+            // $(".list_test").append(html);
+            // };
         });
     </script>
 </body>

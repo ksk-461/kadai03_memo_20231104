@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+li {
+    list-style: none;
+}
+
 body {
     height: 100vh;
     width: 100%;
@@ -61,6 +65,21 @@ main {
 }
 
 .sub {
+    background-color: transparent;
+    border: 1px solid #ffb1b3;
+    cursor: pointer;   
+    padding: 5px 10px;
+    appearance: none;
+    color: #ffb1b3;
+}
+
+.sub:hover {
+    transition: 300ms;
+    background-color: #ffb1b3;
+    color: #fff;
+}
+
+.howto {
     height: 29%;
     border: 1px solid #fff;
     border-radius: 10px;
@@ -77,8 +96,8 @@ main {
 
 .cleaner {
     position: absolute;
-    bottom: -15px;
-    right: 10%;
+    bottom: -2.6%;
+    right: 11%;
     width: 100px;
     height: 50px;
     border-radius: 3px 3px 10px 10px;
@@ -107,6 +126,14 @@ main {
     border: 3px solid #fff;
 }
 
+.clean_up {
+    position: absolute;
+    bottom: 7%;
+    right: 1%;
+    transform: rotate(-20deg);
+    display: none;
+}
+
 /* 色確認用後で消す */
 .yel {
     width: 100px;
@@ -120,4 +147,8 @@ main {
     height: 50px;
     /* background-color: #ffb1b3; */
     background: linear-gradient(transparent 50%, #ffb1b3 70%);
+}
+
+.pink_str {
+    color: #ffb1b3;
 }
