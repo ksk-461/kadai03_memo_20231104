@@ -98,6 +98,10 @@ main {
     outline: none;
 }
 
+#ts{
+    width: 100%;
+    text-align: end;
+}
 .ts {
     font-size: 20px;
     background-color: transparent;
@@ -115,12 +119,14 @@ main {
 }
 
 .ans {
+    font-size: 20px;
     background-color: transparent;
     border: 1px solid #ffb1b3;
     cursor: pointer;   
     padding: 5px 10px;
     appearance: none;
     color: #ffb1b3;
+    margin: 0 8px;
 }
 
 .ans:hover {
@@ -130,6 +136,7 @@ main {
 }
 
 .del {
+    font-size: 20px;
     background-color: transparent;
     border: 1px solid #ff0;
     cursor: pointer;   
@@ -213,6 +220,22 @@ main {
 
 .list_test {
     margin-top: 10px;
+    font-size: 20px;
+}
+
+.list_test p{
+    margin: 5px 0;
+}
+
+.list_test input {
+    font-size: 20px;
+    width: 50%;
+    height: 50px;
+}
+
+.list_test input:focus {
+    border: 2px solid #ffb1b3;
+    outline: none;
 }
 
 .list_test a {
@@ -222,7 +245,14 @@ main {
 .click {
     color: #ffb1b3;
     border: 1px solid #ffb1b3;
+    cursor: pointer;
     padding: 5px;
     margin-left: 10px;
     border-radius: 77% 23% 70% 30% / 54% 57% 43% 46% ;
+}
+
+.click:hover {
+    transition: 300ms;
+    background-color: #ffb1b3;
+    color: #fff;
 }
