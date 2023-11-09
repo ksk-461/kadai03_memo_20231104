@@ -16,15 +16,17 @@
                 <div class="qs">
                     <h1>3年＜br＞<br><span></span>組ジーパチ先生</h1>
                     <!-- ここに説明文を入れる -->
-                    <h2>◇今日は自習です◇</h2>
+                    <h2>今日は自習です</h2>
                     
-                    <!-- <div class="pink"></div>  表示確認用のため後で削除 -->
-                    <!-- <div class="yel"></div>  表示確認用のため後で削除 -->
-                    <label for="word">単語</label><br>
-                    <input type="text" id="word"><br>
-                    <label for="exp">説明</label><br>
-                    <textarea name="" id="exp"></textarea><br>
-                    <button type="button" class="sub ts">登録</button>
+                    <p>各自で勉強を進めてください</p>
+
+                    <div class="inp">
+                        <label for="word">単語</label><br>
+                        <input type="text" id="word" placeholder="覚えたい単語"><br>
+                        <label for="exp">説明</label><br>
+                        <textarea name="" id="exp" placeholder="伏せ字にする箇所を/こんな感じで/囲む"></textarea><br>
+                        <button type="button" class="sub ts">登録</button>
+                    </div>
                 </div>
                 <div class="howto">
                     <h2>使い方</h2>
@@ -75,12 +77,33 @@
                 exp_len = exp_spl.length;
 
                 // 配列に応じての条件分岐
-                if(exp_len == 1){
+                if(word == "" || exp == ""){
+                    alert("単語と説明を入力してね");
+                }else if(exp_len == 1){
                     ans = exp;
                     str_cnt = ans.length;
                     qs = "◯".repeat(str_cnt);
                     cor_sen = ans;
-                    console.log(ans,qs)
+                    // オブジェクトをJSONで保持
+                    arr = {question: qs, answer: ans, correct: cor_sen, count: cor_cnt};
+                    arr = JSON.stringify(arr);
+                    localStorage.setItem(word, arr);
+
+                    const html=`
+                    <a>単語：${word}</a><span class="click">click!</span>
+                    <div>
+                    <span class="judge"></span>
+                    <p>${qs}</p>
+                    <input type="text" id="ans_inp">
+                    <button type="button" class="sub ans">回答</button>
+                    <button type="button" class="sub del">削除</button>
+                    </div>
+                    `;
+
+                    $(".list_test").append(html);
+                    // 入力項目をリセット
+                    $("#word").val("");
+                    $("#exp").val("");
                 }else if(exp_len == 2){
                     // textareaを赤くする？
                     alert("/で伏せ字にしたい文字を囲ってね")
@@ -89,31 +112,30 @@
                     str_cnt = ans.length;
                     qs = exp_spl[0] + "◯".repeat(str_cnt) + exp_spl[2];
                     cor_sen = exp.replace(/\//g,"");
-                }else{
-                    // textareaを赤くする？
-                    alert("/が多すぎるよ。")
-                };
+                    // オブジェクトをJSONで保持
+                    arr = {question: qs, answer: ans, correct: cor_sen, count: cor_cnt};
+                    arr = JSON.stringify(arr);
+                    localStorage.setItem(word, arr);
 
-                // オブジェクトをJSONで保持
-                arr = {question: qs, answer: ans, correct: cor_sen, count: cor_cnt};
-                arr = JSON.stringify(arr);
-                localStorage.setItem(word, arr);
-                const html=`
-                <div>
-                   <p>単語：${word}</p>
-                </div>
-                <div>
+                    const html=`
+                    <a>単語：${word}</a><span class="click">click!</span>
+                    <div>
+                    <span class="judge"></span>
                     <p>${qs}</p>
                     <input type="text" id="ans_inp">
                     <button type="button" class="sub ans">回答</button>
                     <button type="button" class="sub del">削除</button>
-                </div>
-                `;
-                $(".list_test").append(html);
+                    </div>
+                    `;
 
-                // 入力項目をリセット
-                $("#word").val("");
-                $("#exp").val("");
+                    $(".list_test").append(html);
+                    // 入力項目をリセット
+                    $("#word").val("");
+                    $("#exp").val("");
+                }else{
+                    // textareaを赤くする？
+                    alert("/が多すぎるよ。伏せ字にできる項目は1個だけだよ。")
+                };
             })
 
 
@@ -121,6 +143,7 @@
             $(".cleaner").on("click",() => {
                 // 確認のモーダルいる？？
                 localStorage.clear();
+                $(".list_test").empty();
             })
 
             // 黒板消しホバー
@@ -130,10 +153,6 @@
                 function(){
                     $(".clean_up").css("display", "none")
                 });
-
-            $(".cleaner").on("click",() => {
-                $(".list_test").empty();
-            });
 
             // for(let i =0; i < k; i++){
             //     const html =
