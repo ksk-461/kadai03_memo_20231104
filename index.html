@@ -38,9 +38,9 @@
             <div class="list">
                 <h2>\テストに出るぞー/</h2>
                 <p>問題：◯の部分を答えなさい</p>
-                <ul class="list_test">
+                <div class="list_test">
                     
-                </ul>
+                </div>
             </div>
             <span class="cleaner"></span>
             <span class="clean_up">全部消しちゃう？</span>
@@ -99,12 +99,15 @@
                 arr = JSON.stringify(arr);
                 localStorage.setItem(word, arr);
                 const html=`
-                <li>
+                <div>
                    <p>単語：${word}</p>
-                   <p>${qs}</p>
+                </div>
+                <div>
+                    <p>${qs}</p>
                     <input type="text" id="ans_inp">
                     <button type="button" class="sub ans">回答</button>
-                </li>
+                    <button type="button" class="sub del">削除</button>
+                </div>
                 `;
                 $(".list_test").append(html);
 
@@ -134,9 +137,9 @@
 
             // for(let i =0; i < k; i++){
             //     const html =
-            //     `<li>
+            //     `<div>
 
-            //     </li>
+            //     </div>
             // `;
             // $(".list_test").append(html);
             // };

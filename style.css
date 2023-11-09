@@ -64,7 +64,7 @@ main {
     padding: 10px;
 }
 
-.sub {
+.ans {
     background-color: transparent;
     border: 1px solid #ffb1b3;
     cursor: pointer;   
@@ -73,11 +73,27 @@ main {
     color: #ffb1b3;
 }
 
-.sub:hover {
+.ans:hover {
     transition: 300ms;
     background-color: #ffb1b3;
     color: #fff;
 }
+
+.del {
+    background-color: transparent;
+    border: 1px solid #ff0;
+    cursor: pointer;   
+    padding: 5px 10px;
+    appearance: none;
+    color: #ff0;
+}
+
+.del:hover {
+    transition: 300ms;
+    background-color: #ff0;
+    color: #fff;
+}
+
 
 .howto {
     height: 29%;
@@ -92,6 +108,7 @@ main {
     border: 1px solid #fff;
     border-radius: 10px;
     padding: 10px;
+    overflow: scroll;
 }
 
 .cleaner {
