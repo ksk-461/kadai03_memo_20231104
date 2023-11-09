@@ -221,6 +221,7 @@ main {
 .list_test {
     margin-top: 10px;
     font-size: 20px;
+    line-height: 30px;
 }
 
 .list_test p{
@@ -238,7 +239,7 @@ main {
     outline: none;
 }
 
-.list_test a {
+.test_word {
     background: linear-gradient(transparent 80%, #ffb1b3 80%);
 }
 
@@ -246,7 +247,7 @@ main {
     color: #ffb1b3;
     border: 1px solid #ffb1b3;
     cursor: pointer;
-    padding: 5px;
+    padding: 1px;
     margin-left: 10px;
     border-radius: 77% 23% 70% 30% / 54% 57% 43% 46% ;
 }
@@ -255,4 +256,14 @@ main {
     transition: 300ms;
     background-color: #ffb1b3;
     color: #fff;
+}
+
+.test {
+    display: none;
+    margin-bottom: 8px;
+}
+
+.hide {
+    color: #ffb1b3;
+    display: none;
 }

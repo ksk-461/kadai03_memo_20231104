@@ -92,15 +92,23 @@
                     localStorage.setItem(word, arr);
 
                     const html=`
-                    <a>単語：${word}</a><span class="click">click!</span>
-                    <div>
-                    <span class="judge"></span>
-                    <p>${qs}</p>
-                    <input type="text" id="ans_inp">
-                    <button type="button" class="sub ans">回答</button>
-                    <button type="button" class="sub del">削除</button>
+                    <div class="test_wrap">
+                        <a class="test_word">単語：${word}</a><span class="click">click!</span><br>
+                        <div class="test">
+                            <span class="hide">${ans}</span>
+                            <button type="button" class="sub ans">回答</button>
+                            <p>${qs}</p>
+                            <button type="button" class="sub ans">回答</button>
+                            <span class="hide">${word}</span>
+                            <button type="button" class="sub del">削除</button>
+                        </div>
                     </div>
                     `;
+
+                    // 前述のpタグの後ろに本当は入れたかったけど、時間なくて断念
+                    // <span class="judge"></span>
+                    // <input type="text" class="ans_inp">
+                    // <button type="button" class="sub ans">回答</button>
 
                     $(".list_test").append(html);
                     // 入力項目をリセット
@@ -120,15 +128,23 @@
                     localStorage.setItem(word, arr);
 
                     const html=`
-                    <a>単語：${word}</a><span class="click">click!</span>
-                    <div>
-                    <span class="judge"></span>
-                    <p>${qs}</p>
-                    <input type="text" id="ans_inp">
-                    <button type="button" class="sub ans">回答</button>
-                    <button type="button" class="sub del">削除</button>
+                    <div class="test_wrap">
+                        <a class="test_word">単語：${word}</a><span class="click">click!</span><br>
+                        <div class="test">
+                            <p>${qs}</p>
+                            <span class="hide">${ans}</span>
+                            <button type="button" class="sub ans">回答</button>
+                            <span class="hide">${word}</span>
+                            <button type="button" class="sub del">削除</button>
+                        </div>
                     </div>
                     `;
+
+                    // 前述のpタグの後ろに本当は入れたかったけど、時間なくて断念
+                    // <span class="judge"></span>
+                    // <input type="text" class="ans_inp">
+                    // <button type="button" class="sub ans">回答</button>
+
 
                     $(".list_test").append(html);
                     // 入力項目をリセット
@@ -155,15 +171,58 @@
                 function(){
                     $(".clean_up").css("display", "none")
                 });
+            
+            $(".list_test").on("click",".click" ,(e) => {
+                const target = e.currentTarget;
+                const content = target.nextElementSibling.nextElementSibling;
 
-            // for(let i =0; i < k; i++){
-            //     const html =
-            //     `<div>
+                if(content.style.display === "block"){
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block"
+                };
+            });
+            
+            $(".list_test").on("click",".sub"+".ans",(e) =>{
+                const target = e.currentTarget;
+                const content = target.parentElement.parentElement;
+                const ans_ele = target.previousElementSibling;
+                
+                if(ans_ele.style.display === "block"){
+                    ans_ele.style.display = "none";
+                } else {
+                    ans_ele.style.display = "block"
+                };
+            });
 
-            //     </div>
-            // `;
-            // $(".list_test").append(html);
-            // };
+            $(".list_test").on("click",".sub"+".del",(e) =>{
+                const target = e.currentTarget;
+                const content = target.parentElement.parentElement;
+                const key_word = target.previousElementSibling.innerHTML;
+                localStorage.removeItem(key_word);
+                content.remove();
+            });
+
+            for(let i =0; i < localStorage.length; i++){
+                const word = localStorage.key(i);
+                arr = localStorage.getItem(word);
+                arr = JSON.parse(arr);
+                const ans = arr.answer;
+                const qs = arr.question;
+                const html =
+                `<div>
+                    <a class="test_word">単語：${word}</a><span class="click">click!</span><br>
+                        <div class="test">
+                            <p>${qs}</p>
+                            <span class="hide">${ans}</span>
+                            <button type="button" class="sub ans">回答</button>
+                            <span class="hide">${word}</span>
+                            <button type="button" class="sub del">削除</button>
+                    </div>
+                </div>
+            `;
+            $(".list_test").append(html);
+            };
         });
     </script>
 </body>
