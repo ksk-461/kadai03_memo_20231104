@@ -1,8 +1,8 @@
-# 3年<br>組　単語記憶LP
+# 3年＜br＞組　単語記憶LP
 
 ## DEMO
 
-  - デプロイしている場合はURLを記入（任意）
+https://ksk-461.github.io/kadai03_memo_20231104/
 
 ## 紹介と使い方
 
